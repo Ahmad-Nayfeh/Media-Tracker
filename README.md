@@ -1,7 +1,7 @@
 
-# My Media Tracker 📚🎬🎙️
+# Media Tracker 📚🎬🎙️
 
-My Media Tracker is a full-stack web application, built from scratch with FastAPI and React, that allows you to create, manage, and track your personal media collections. 
+Media Tracker is a full-stack web application, built from scratch with FastAPI and React, that allows you to create, manage, and track your personal media collections. 
 
 This app moves beyond simple, pre-defined trackers. It allows you to dynamically create your own categories (like "Books" or "Podcasts") and then define the *exact* fields you want to track for each one (e.g., "Title", "Author", "Status", "Rating", etc).
 
@@ -9,7 +9,7 @@ This app moves beyond simple, pre-defined trackers. It allows you to dynamically
 
 Here is a simple demonstration of the app's core workflow: creating a new category, dynamically adding fields (columns) to it, and then populating it with new items (rows).
 
-![My Media Tracker Demo](simple_demo.gif)
+![Media Tracker Demo](simple_demo.gif)
 
 ---
 
