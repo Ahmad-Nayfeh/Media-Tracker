@@ -1,0 +1,54 @@
+/* src/components/CategoryDetailPage.css */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1rem;
+}
+
+/* --- NEW: Control Panel Styling --- */
+.controls-card {
+  background-color: #f8f9fa; /* Light grey background */
+  border: 1px solid #dee2e6;
+  margin-bottom: 1.5rem; /* Space above the table */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.controls-card .card-body {
+  padding: 1rem 1.25rem;
+}
+
+/* This is the key to aligning all form items */
+.controls-card .form-group {
+  margin-bottom: 0; /* Remove default bottom margin */
+}
+
+/* This fixes the button height! */
+.search-input-group .btn {
+  /* Make the button the same height as the input */
+  height: 100%; 
+}
+
+/* Table styles */
+.item-table {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.item-table th {
+  background-color: #343a40;
+  color: white;
+  font-weight: 600;
+  vertical-align: middle;
+  border-color: #454d55;
+}
+
+.no-items-row td {
+  padding: 2rem;
+  font-style: italic;
+  color: #6c757d;
+}

@@ -1,0 +1,24 @@
+/* This will be our new file */
+
+/* This targets the <Nav> component */
+.navbar-nav {
+  /* Use flexbox to align the form and logout button */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%; /* Make sure it takes up all the space */
+}
+
+/* This targets the <Form> inside our <Nav> */
+.navbar-nav .d-flex {
+  /* 'margin-left: auto' pushes the search bar all the way to the right */
+  margin-left: auto;
+  /* Add space *between* the form and the logout button */
+  margin-right: 1rem; 
+}
+
+/* This targets the children *inside* the form (the input and buttons) */
+.navbar-nav .d-flex > * {
+  /* Add a small margin to the right of each item */
+  margin-right: 0.5rem; 
+}

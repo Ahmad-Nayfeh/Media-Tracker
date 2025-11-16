@@ -1,0 +1,28 @@
+/* This targets the Card component itself */
+.card {
+  /* Add a subtle "lift" effect when you hover over it */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Moves the card up 5px */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important; /* Adds a bigger shadow */
+}
+
+/* This targets the div holding the buttons */
+.card-body .mt-auto {
+  /* Use flexbox to align buttons and add space */
+  display: flex;
+  align-items: center;
+}
+
+/* This targets every button/link *inside* that div */
+.card-body .mt-auto > * {
+  /* This is the fix: add a small margin to the right of each button */
+  margin-right: 0.5rem; /* 0.5rem is about 8px */
+}
+
+/* This targets the *last* button and removes its margin */
+.card-body .mt-auto > *:last-child {
+  margin-right: 0;
+}
