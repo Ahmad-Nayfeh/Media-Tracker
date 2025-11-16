@@ -1,0 +1,46 @@
+# --- Python / Backend ---
+# Ignore all __pycache__ folders
+__pycache__/
+
+# Ignore the virtual environment folder
+venv/
+.venv/
+
+# Ignore the database file
+# This is critical! Never commit your database.
+backend/db.sqlite3
+backend/db.sqlite3-shm
+backend/db.sqlite3-wal
+
+# Ignore the secrets file
+# This is the most important security rule.
+backend/.env
+
+# Ignore old_main.py (it's a backup)
+backend/old_main.py
+
+
+# --- Node / Frontend ---
+# Merged from front_end/.gitignore
+
+# dependencies
+front_end/node_modules
+front_end/.pnp
+front_end/.pnp.js
+
+# testing
+front_end/coverage
+
+# production
+front_end/build
+
+# misc
+front_end/.DS_Store
+front_end/.env.local
+front_end/.env.development.local
+front_end/.env.test.local
+front_end/.env.production.local
+
+front_end/npm-debug.log*
+front_end/yarn-debug.log*
+front_end/yarn-error.log*
