@@ -1,130 +1,127 @@
-### **Project Title: "Media Tracker"**
 
-### **Project Concept**
+# My Media Tracker 📚🎬🎙️
 
-A full-stack web application (FastAPI + React) that allows authenticated users to build, design, and manage their own personal media databases. Users can create "Categories" (e.g., "Books") and then define the "Fields" (e.g., "Author," "Rating") they want to track for that category.
+My Media Tracker is a full-stack web application, built from scratch with FastAPI and React, that allows you to create, manage, and track your personal media collections. 
 
----
+This app moves beyond simple, pre-defined trackers. It allows you to dynamically create your own categories (like "Books" or "Podcasts") and then define the *exact* fields you want to track for each one (e.g., "Title", "Author", "Status", "Rating", etc).
 
-### **Core Features by Level**
+## 🚀 Live Demo
 
-This project is built on a foundation of user authentication and three main data management levels.
+Here is a simple demonstration of the app's core workflow: creating a new category, dynamically adding fields (columns) to it, and then populating it with new items (rows).
 
-#### **Level 0: User Authentication (Foundation)**
-
-The entire system is private and user-specific.
-
-- **Sign Up:** Users can create a new account with a username/email and password.
-    
-- **Log In:** Registered users can log in to access their data.
-    
-- **Data Ownership:** All data (Categories, Fields, and Items) is linked to the logged-in user. A user can _only_ see and manage their own data.
-    
-
-#### **Level 1: Category Management (CRUD)**
-
-This level handles the high-level collections (the "databases").
-
-- **Create:** A user can create a new, empty Category (e.g., "Books," "Podcasts").
-    
-- **Read:** A user can see a list of all Categories they have created.
-    
-- **Update:** A user can rename an existing Category.
-    
-- **Delete:** A user can delete a Category. This will also delete all Fields and Items associated with it.
-    
-
-#### **Level 2: Field Management (CRUD)**
-
-This is the "design mode" where users define the _structure_ of a Category.
-
-- **Create:** For a chosen Category, a user can add a new Field. This requires two inputs:
-    
-    1. **Field Name:** (e.g., "Title," "Status,", "Author").
-        
-    2. **Field Type:** The user must select from a predefined list of types:
-        
-        - `Text`: For short, single-line text.
-            
-        - `Notes`: For long, multi-line text.
-            
-        - `Number`: For numerical values.
-            
-        - `Date`: A date picker.
-            
-        - `Boolean`: A true/false checkbox.
-            
-        - `Select`: A dropdown menu. When creating this type, the user must also provide the list of options (e.g., "Option 1", "Option 2").
-            
-- **Read:** Users can see all fields for a given category in its "settings" or when viewing an item.
-    
-- **Update:** A user can update the **name** of an existing field. (The `type` will be permanent to avoid data conflicts).
-    
-- **Delete:** A user can delete a field. This will also delete all data for that field from all items in the category.
-    
-
-#### **Level 3: Item Management (CRUD)**
-
-This is the "data entry mode" for adding items to the categories.
-
-- **Create:** A user can add a new Item to a Category. The "New Item" form will be **dynamically generated** based on the Fields defined in Level 2.
-    
-- **Read:** A user can view a list of all Items within a selected Category.
-    
-- **Update:** A user can edit the data in the fields of an existing Item.
-    
-- **Delete:** A user can delete a specific Item.
-    
+![My Media Tracker Demo](simple_demo.gif)
 
 ---
 
-### **Additional Functionality**
+## ✨ Key Features
 
-- **Search:** On the "Read Items" (Level 3) view, a search bar will allow the user to filter items based on their field values.
-    
-- **Sort:** On the "Read Items" (Level 3) view, the user can sort the list by clicking on a Field's name (e.g., sort by "Rating").
-    
+* **Full User Authentication:** Secure signup and login system using `passlib` hashing and JWT tokens. All data is private to the logged-in user.
+* **Dynamic 3-Level Data Model:**
+    * **Level 1 (Categories):** Full CRUD for high-level collections (e.g., "Books", "People", "Courses").
+    * **Level 2 (Fields):** Full CRUD for the "columns" of a category. This allows you to *design* your own tables.
+    * **Level 3 (Items):** Full CRUD for the "rows" in your collections.
+* **"Smart" Forms:** Forms for adding/updating items and fields are **dynamically generated** based on the data type ("Text", "Number", "Date", "Select") you defined.
+* **Robust Data Integrity:**
+    * Renaming a field (e.g., "Title" -> "Book Title") automatically migrates all associated item data.
+    * Deleting a field (e.g., "Author") automatically removes that data from all items in the category.
+* **Dual Search & Filter System:**
+    * **Category Search (Homepage):** A global search bar to filter your main category list.
+    * **Item Search (Detail Page):** An "inside" search to find items by text in *any* field.
+    * **Smart Filtering:** Dynamically generated dropdowns to filter items by `Select` fields (e.g., `Status == "Read"`).
+* **Secure API:** All data-related API endpoints are protected and require a valid token.
 
 ---
 
-### **Default Content (On First User Sign Up)**
+## 🛠️ Tech Stack
 
-To provide a starting point, the application will automatically create the following two Categories and their Fields for a new user. The user can modify or delete these as they wish.
+### Backend
+* **Python 3.11+**
+* **FastAPI:** For the high-performance ASGI web server.
+* **Tortoise-ORM:** Asynchronous ORM for managing the SQLite database.
+* **Pydantic:** For data validation and API "contracts."
+* **Passlib\[bcrypt] & python-jose:** For password hashing and JWT token authentication.
+* **`fastapi-mail`:** For email functionality.
+* **`Faker`:** For database seeding.
 
-**1. Category: Books**
+### Frontend
+* **React 18+**
+* **React Router v6:** For all page navigation and protected routes.
+* **React Context:** For global state management (Auth, Categories, Updates).
+* **`react-bootstrap` & `bootstrap`:** For the responsive UI component library.
+* **`react-router-bootstrap`:** To integrate router links with `react-bootstrap` components.
 
-- **Fields:**
+---
+
+## ⚙️ Installation & Setup
+
+To run this project locally, you will need to run two separate applications: the backend API and the frontend client.
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Ahmad-Nayfeh/Media-Tracker
+cd media-tracker
+````
+
+### 2. Backend Setup
+
+Bash
+
+```
+# Navigate to the backend folder
+cd backend
+
+# Create and activate a Python virtual environment
+python -m venv venv
+source venv/bin/activate  # (or .\venv\Scripts\activate on Windows)
+
+# Install all required Python libraries
+pip install -r requirements.txt
+
+# Create your secret .env file
+# (You must do this for the email server to work)
+echo "EMAIL=your-gmail@gmail.com" > .env
+echo "PASS=your-16-digit-app-password" >> .env
+
+# Run the seed script to create a new, populated database
+python seed.py
+
+# Run the backend server
+uvicorn main:app --reload
+```
+
+> Your backend API will now be running at `http://127.0.0.1:8000`
+
+### 3. Frontend Setup
+
+Bash
+
+```
+# Open a NEW, SEPARATE terminal
+# Navigate to the frontend folder
+cd front_end
+
+# Install all required npm packages
+npm install
+
+# Run the frontend development server
+npm start
+```
+
+> Your React app will now be running and open in your browser at `http://localhost:3000`
+
+---
+
+## 💡 Future Features
+
+This project is a complete V1, but here are features planned for V2:
+
+- [ ] **Password Reset:** A secure "Forgot Password" flow that emails the user a reset link.
     
-    - `Title`: (Type: `Text`)
-        
-    - `Author`: (Type: `Text`)
-        
-    - `Publish Date`: (Type: `Date`)
-        
-    - `Status`: (Type: `Select` | Options: "Read", "Reading", "To Be Read Next", "Not Read")
-        
-    - `Rating`: (Type: `Select` | Options: "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐")
-        
-    - `Summary`: (Type: `Notes`)
-        
-
-**2. Category: Podcasts**
-
-- **Fields:**
+- [ ] **Email Verification:** Send a verification link on signup before a user can log in.
     
-    - `Podcast Title`: (Type: `Text`)
-        
-    - `Podcast Period`: (Type: `Text`) - _For duration, e.g., "2h 30m"_
-        
-    - `Host`: (Type: `Text`)
-        
-    - `Guest`: (Type: `Text`)
-        
-    - `Publish Date`: (Type: `Date`)
-        
-    - `Rating`: (Type: `Select` | Options: "⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐")
-        
-    - `Notes`: (Type: `Notes`)
-        
+- [ ] **Column Reordering:** Allow drag-and-drop reordering of Fields (columns) in the item table.
+    
+- [ ] **Advanced Sorting:** Make all table headers clickable to sort items.
+    
 
 ---
